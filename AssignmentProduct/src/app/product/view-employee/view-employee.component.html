@@ -1,0 +1,43 @@
+<app-product></app-product>
+<br>
+<h4>VIEW PRODUCT</h4>
+<br>
+<div class="display">
+    <select [(ngModel)]="defaultcategory" name="category" class="form-select form-select-sm">
+      <option value="all">ALL</option>
+      <option  *ngFor="let cat of category" value="{{cat}}">{{cat}}</option>
+    </select>
+</div>
+<br><br>
+
+
+
+<table style="width: 90%; left:5%; position: absolute;">
+    <thead style="text-align: center;">
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Price</th>
+            <th>Product Quantity</th>
+            <th>Choice</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let l of list | productFilter: defaultcategory ">
+        <tr>
+            <td>{{l.pid}}</td>
+            <td>{{l.pname}}</td>
+            <td>{{l.desp}}</td>
+            <td>{{l.price}}</td>
+            <td>{{l.qty}}</td>
+            
+            <td>
+            <button [routerLink]="['/edit',l.pid]" class="btn-btn-primary">Edit</button>
+            <input type="submit" value="Delete" (click)="removeproduct(l.pid)">
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+<br><br>

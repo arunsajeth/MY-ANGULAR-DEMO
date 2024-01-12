@@ -1,0 +1,32 @@
+<app-product></app-product>
+
+<br>
+<form>
+<input type="search" name="find" [(ngModel)]="find" style="width:70%; left: 10%; position: absolute;">
+<input type="submit" value="SEARCH" (click)="viewoper()" style="left:80%; position: absolute;">
+<br><br>
+</form>
+
+
+<table *ngIf="showalert" style="width: 70%; left:15%; position: absolute;">
+    <thead style="text-align: center;">
+        <tr>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Price</th>
+            <th>Product Quantity</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let l of searchlist">
+        <tr>
+            <td>{{l.pid}}</td>
+            <td>{{l.pname}}</td>
+            <td>{{l.desp}}</td>
+            <td>{{l.price}}</td>
+            <td>{{l.qty}}</td>
+             
+        </tr>
+    </tbody>
+
+</table>
