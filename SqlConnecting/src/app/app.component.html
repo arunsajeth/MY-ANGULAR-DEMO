@@ -1,0 +1,11 @@
+<h4>HELLO WELOCME !!!</h4>
+
+
+<form #myform="ngForm" (ngSubmit)="deleteservice()">
+  <label >Product Id</label>
+  <input type="text" name="pid" [(ngModel)]="pid">
+  <br>
+  <input type="submit" value="Delete">
+</form>
+
+{{myform.value | json}}
