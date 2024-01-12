@@ -1,0 +1,51 @@
+<!-- --------------- CHANGING BUTTON COLOR --------------------------
+
+<button (click) = "operclick(userchoice)" [ngStyle]="{'background-color':operation}">{{operation}}</button>
+
+
+ -->
+
+
+<!-- ---------------LOGIN WITHOUT TYPESCRIPT FILE FOR ADMIN -----------------------
+ <p *ngIf="log.value=='admin' && pwd.value=='reset@123'" >WELCOME ADMIN</p>
+ <p *ngIf="log.value!='admin' ||pwd.value!='reset@123'" >INVALID LOGIN</p>
+ <fieldset>
+    <label >USERNAME</label>
+    <input type="text" #log  [(ngModel)]="log.value">
+    <br><br>
+    <label>PASSWORD</label>
+    <input type="password" #pwd [(ngModel)]="pwd.value">
+ </fieldset>
+ -->
+
+
+ <!-- <p *ngFor="let i of [1,2,3,4,5]">
+    {{i}}
+ </p>
+ -->
+ <!-- <table>
+   <thead>
+       <th>eid</th>
+       <th>Name</th>
+       <th>salary</th>
+       <th>dept</th>
+   </thead>
+   <tbody>
+       <tr *ngFor="let e of emp">
+           <td>{{e.eid}}</td>
+           <td>{{e.ename}}</td>
+           <td>{{e.salary}}</td>
+           <td>{{e.dept}}</td>
+       </tr>
+   </tbody>
+</table> -->
+
+<ul *ngFor="let e of emp" [ngSwitch]="e.dept">
+    <li *ngSwitchCase="'IT'" class="IT" >{{e.eid}} is working as {{e.dept}}</li>
+    <li *ngSwitchCase="'HR'" class="HR" >{{e.eid}} is working as {{e.dept}}</li>
+    <li *ngSwitchCase="'ADMIN'" class="ADMIN" >{{e.eid}} is working as {{e.dept}}</li>
+</ul>
+
+ 
+
+

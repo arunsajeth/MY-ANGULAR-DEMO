@@ -1,0 +1,73 @@
+<h4>EMPLOYEE DETAILS </h4>
+<br>
+<h5>ADD EMPLOYEE</h5>
+{{myform.value | json}}
+<form #myform="ngForm" (ngSubmit)="dataSubmited()">
+  <div class="mb-3">
+    <label class="form-label">EMPLOYEE ID</label>
+    <input type="text" class="form-control" name="eid" [(ngModel)]="emp.eid" #eid="ngModel" required [class.is-invalid]="eid.invalid && eid.touched" pattern="^[E].[0-9]+">
+    <div *ngIf="eid.touched"> 
+      <div *ngIf="eid.invalid"> 
+      <small class="text-danger" *ngIf="eid.errors?.['required']">Employee Id Can't be empty</small>
+      <small class="text-danger" *ngIf="eid.errors?.['pattern']">Employee Id Should be like 'E123'</small>
+      </div>
+  </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">EMPLOYEE NAME</label>
+    <input type="text" class="form-control" name="ename" [(ngModel)]="emp.ename" #ename="ngModel" required [class.is-invalid]="ename.invalid && ename.touched" pattern="^[A-za-z]+$" minlength="3">
+    <div *ngIf="ename.touched"> 
+      <div *ngIf="ename.invalid"> 
+      <small class="text-danger" *ngIf="ename.errors?.['required']">Employee Name Can't be empty</small>
+      <small class="text-danger" *ngIf="ename.errors?.['pattern']">Employee Name Should have only alphabets</small>
+      <small class="text-danger" *ngIf="ename.errors?.['minlength']">Employee Name Should have Min 3 Character</small>
+      </div>
+  </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">EMPLOYEE SALARY</label>
+    <input type="text" class="form-control" name="salary" [(ngModel)]="emp.salary" #salary="ngModel" required [class.is-invalid]="salary.invalid && salary.touched" pattern="^[0-9]+$">
+    <div *ngIf="salary.touched"> 
+      <div *ngIf="salary.invalid"> 
+      <small class="text-danger" *ngIf="salary.errors?.['required']">Employee salary Can't be empty</small>
+      <small class="text-danger" *ngIf="salary.errors?.['pattern']">Employee salary Should have only numbers</small>
+      <small class="text-danger" *ngIf="salary.errors?.['min']">Employee salary Should have only numbers</small>
+      </div>
+  </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">EMPLOYEE DEPARTMENT</label>
+    <select class="form-select" [(ngModel)]="emp.dept" name="dept" #dept="ngModel" [class.is-invalid]="dept.invalid && dept.touched && hasError" (blur)="validate(dept.value)" (change)="validate(dept.value)" required>
+      <option value="default">---Select the Department---</option>
+      <option *ngFor="let de of depts" value="{{de}}">{{de}}</option>
+    </select>
+    <div *ngIf="dept.touched"> 
+      <div *ngIf="dept.invalid"> 
+      <small class="text-danger" *ngIf="dept.errors?.['required']">Employee department Can't be empty</small>
+      </div>
+  </div>
+    <small class="text-danger" [class.d-none]="dept.untouched || !hasError">Select Employee Department</small>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="myform.form.invalid || hasError">Add Employee</button> &nbsp; &nbsp;
+  <button type="button" class="btn btn-danger">Clear</button>
+  
+</form>
+
+<br><br><br><br>
+<h3> ALL EMPLOYEE DETAILS </h3>
+<br>
+<div class="display">
+<select [(ngModel)]="defaultDept" name="dept" class="form-select form-select-sm">
+  <option value="all">ALL</option>
+  <option  *ngFor="let d of depts" value="{{d}}">{{d}}</option>
+</select>
+</div>
+<br><br>
+
+<div  *ngFor="let e of list | deptfilter:defaultDept">
+    
+    <app-employee [emp]="e"></app-employee>
+  </div>
+
+  

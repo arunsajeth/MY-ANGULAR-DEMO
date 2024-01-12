@@ -1,0 +1,12 @@
+<div>
+    {{temp}}
+</div>
+
+<div>
+    {{fname}} {{lname}} is a name.
+</div>
+
+<h1>This is text is from child component {{myName}}</h1>
+
+<input type="text" name="iname" [(ngModel)]="myName">
+<button (click)="printname(myName)">SEND</button>

@@ -1,0 +1,9 @@
+<p>
+    <input type="text" #num (input)="num.value">
+</p>
+<p>
+    <input type="text" #power (input)="power.value">
+</p>
+
+<p>Output: {{num.value | powerpipe:power.value}}
+</p>
